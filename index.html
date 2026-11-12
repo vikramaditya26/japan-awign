@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ja" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Awign — 家事を撮影して報酬を得る在宅ワーク（マイナビグループ）</title>
+<meta name="description" content="スマホを頭に付けて、いつもの家事を一人称視点で撮影する在宅ワーク。研修、撮影ルール、アプリ設定、お支払いの案内。Awign（マイナビグループ）日本プログラム。" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="apple-touch-icon" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<script>
+  (function () {
+    var t = localStorage.getItem("awign_theme");
+    document.documentElement.setAttribute("data-theme", t === "light" ? "light" : "dark");
+  })();
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="shell nav__in">
+    <a class="brand" href="#top"><img src="assets/logo.png" alt="Awign" /></a>
+    <div class="nav__tools">
+      <div class="seg" role="group" aria-label="Language">
+        <button type="button" id="l-ja" class="on" onclick="setLang('ja')" lang="ja"><span class="l-full">日本語</span><span class="l-short">JA</span></button>
+        <button type="button" id="l-en" onclick="setLang('en')" lang="en"><span class="l-full">English</span><span class="l-short">EN</span></button>
+      </div>
+      <button type="button" class="iconbtn" id="theme-btn" onclick="toggleTheme()" aria-label="Switch theme">
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <div class="hero__aura"></div>
+    <div class="shell hero__in">
+      <div class="rv">
+        <h1 data-i18n="heroTitle"></h1>
+        <p class="lede" data-i18n="heroLede"></p>
+      </div>
+      <div class="rv">
+        <div class="vid" id="v-hero"></div>
+        <p class="vid__cap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <span data-i18n="heroVideoCap"></span>
+        </p>
+      </div>
+    </div>
+
+    <div class="shell">
+      <div class="stats">
+        <div class="stat card card--edge card--spot card--lift rv">
+          <div class="stat__v" data-i18n="stat1V"></div>
+          <div class="stat__l" data-i18n="stat1L"></div>
+        </div>
+        <div class="stat card card--edge card--spot card--lift rv">
+          <div class="stat__v" data-i18n="stat2V"></div>
+          <div class="stat__l" data-i18n="stat2L"></div>
+        </div>
+        <div class="stat stat--phone card card--edge card--spot card--lift rv">
+          <div class="stat__v" data-i18n="stat3V"></div>
+          <div class="phones" id="phones"></div>
+          <div class="stat__l" data-i18n="stat3L"></div>
+        </div>
+      </div>
+    </div>
+    <div class="shell">
+      <div class="start card card--edge rv" id="start-box"></div>
+    </div>
+  </header>
+
+  <!-- ================= MINUTE APP ================= -->
+  <section class="sec sec--tint" id="app">
+    <div class="shell">
+      <div class="head rv">
+        <h2 data-i18n="appTitle"></h2>
+        <p data-i18n="appBody"></p>
+      </div>
+
+      <div class="app">
+        <div class="rv">
+          <div id="app-steps"></div>
+        </div>
+
+        <div class="app__sticky rv">
+          <div class="vid" id="v-app"></div>
+          <p class="vid__cap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span data-i18n="appVideoCap"></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PAYMENTS ================= -->
+  <section class="sec" id="pay">
+    <div class="shell">
+      <div class="head rv">
+        <h2 data-i18n="payTitle"></h2>
+        <p data-i18n="payBody"></p>
+      </div>
+      <div class="pay">
+        <div class="pay__card card card--edge card--spot rv" id="pay-cycles"></div>
+        <div class="pay__card card card--spot rv" id="pay-min"></div>
+        <div class="pay__card card card--spot rv" id="pay-acct"></div>
+      </div>
+      <div class="pay__contact rv" id="pay-contact"></div>
+    </div>
+  </section>
+
+  <!-- ================= WORK ================= -->
+  <section class="sec sec--tint" id="work">
+    <div class="shell work">
+      <div class="rv">
+        <h2 data-i18n="workTitle"></h2>
+        <p class="lede" style="margin-top:18px" data-i18n="workBody"></p>
+        <div id="setup-list" style="margin-top:22px"></div>
+      </div>
+      <div class="work__grid rv">
+        <figure>
+          <div class="shot"><img src="assets/img/pov-dishes.jpg" alt="" loading="lazy" /></div>
+          <figcaption data-i18n="workCap1"></figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="assets/img/pov-sorting.jpg" alt="" loading="lazy" /></div>
+          <figcaption data-i18n="workCap2"></figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="assets/img/pov-wiping.jpg" alt="" loading="lazy" /></div>
+          <figcaption data-i18n="workCap3"></figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="assets/img/pov-crafting.jpg" alt="" loading="lazy" /></div>
+          <figcaption data-i18n="workCap4"></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EXAMPLES (good + bad together) ================= -->
+  <section class="sec" id="training">
+    <div class="shell">
+      <div class="head rv">
+        <h2 data-i18n="exTitle"></h2>
+        <p data-i18n="exBody"></p>
+      </div>
+
+      <div class="exgroup rv">
+        <div class="exhead">
+          <span class="tag tag--good">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-i18n="goodTag"></span>
+          </span>
+          <h3 data-i18n="goodHeading"></h3>
+          <p data-i18n="goodSub"></p>
+        </div>
+        <div class="clips" id="clips-good"></div>
+      </div>
+
+      <div class="exgroup rv">
+        <div class="exhead">
+          <span class="tag tag--bad">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <span data-i18n="badTag"></span>
+          </span>
+          <h3 data-i18n="badHeading"></h3>
+          <p data-i18n="badSub"></p>
+        </div>
+        <div class="clips" id="clips-bad"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DO / DON'T ================= -->
+  <section class="sec sec--tint" id="standards">
+    <div class="shell">
+      <div class="head rv">
+        <h2 data-i18n="ddTitle"></h2>
+        <p data-i18n="ddBody"></p>
+      </div>
+      <div class="dd">
+        <div class="dd__col dd--good card card--edge card--spot rv">
+          <h3 data-i18n="doTitle"></h3>
+          <ul id="do-list"></ul>
+        </div>
+        <div class="dd__col dd--bad card card--spot rv">
+          <h3 data-i18n="dontTitle"></h3>
+          <ul id="dont-list"></ul>
+        </div>
+      </div>
+      <p class="dd__note rv" data-i18n="ddNote"></p>
+    </div>
+  </section>
+
+  <!-- ================= QUIZ ================= -->
+  <section class="sec">
+    <div class="shell">
+      <div class="head rv">
+        <h2 data-i18n="quizTitle"></h2>
+        <p data-i18n="quizBody"></p>
+      </div>
+      <div class="meter rv">
+        <span id="q-count">0/5</span>
+        <span data-i18n="quizProgress"></span>
+        <span class="track"><span class="fill" id="q-fill"></span></span>
+      </div>
+      <div class="quiz" id="quiz"></div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section class="sec sec--tint" id="faq">
+    <div class="shell">
+      <div class="head head--center rv">
+        <h2 data-i18n="faqTitle"></h2>
+      </div>
+      <div class="faq" id="faq-list"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="shell">
+    <div class="foot__top">
+      <div>
+        <a class="brand" href="#top"><img src="assets/logo.png" alt="Awign" /></a>
+        <p class="foot__tag" data-i18n="footTag"></p>
+        <div class="foot__social" id="social"></div>
+      </div>
+
+      <div class="foot__col">
+        <h4 data-i18n="footProgram"></h4>
+        <ul>
+          <li><a href="#app" data-i18n="fApp"></a></li>
+          <li><a href="#pay" data-i18n="fPay"></a></li>
+          <li><a href="#training" data-i18n="fTraining"></a></li>
+          <li><a href="#standards" data-i18n="fStandards"></a></li>
+          <li><a href="#faq" data-i18n="fQuestions"></a></li>
+        </ul>
+      </div>
+
+      <div class="foot__col">
+        <h4 data-i18n="footCompany"></h4>
+        <ul>
+          <li><a id="f-about" target="_blank" rel="noopener" data-i18n="fAbout"></a></li>
+          <li><a id="f-official" target="_blank" rel="noopener" data-i18n="fOfficial"></a></li>
+          <li><a id="f-contact" target="_blank" rel="noopener" data-i18n="fContact"></a></li>
+        </ul>
+      </div>
+
+      <div class="foot__col">
+        <h4 data-i18n="footSupport"></h4>
+        <ul>
+          <li><a href="privacy.html" data-i18n="fPrivacy"></a></li>
+          <li><a href="terms.html" data-i18n="fTerms"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot__bar">
+    <span data-i18n="footRights"></span>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
