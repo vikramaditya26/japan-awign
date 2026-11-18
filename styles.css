@@ -1522,19 +1522,6 @@ section[id] {
   text-decoration: underline;
 }
 
-@media (min-width: 960px) {
-  .start {
-    grid-template-columns: 1.15fr 1fr;
-  }
-  .start__soon,
-  .start__cta {
-    grid-column: 1 / -1;
-  }
-  .start__cta {
-    margin-top: -6px;
-  }
-}
-
 @media (max-width: 479px) {
   .stp .orgcode__copy {
     width: auto;
@@ -1568,3 +1555,135 @@ html[lang="ja"] h1, html[lang="ja"] h2, html[lang="ja"] h3 { letter-spacing: 0.0
 .orgcode--soon .orgcode__v { opacity: 0.75; letter-spacing: 0.04em; }
 html[lang="ja"] h1, html[lang="ja"] h2 { white-space: pre-line; }
 html[lang="ja"] .hero h1 { font-size: clamp(34px, 4.4vw, 56px); }
+
+/* ---------- LINE call to action ---------- */
+
+.herocta {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+.herocta__note {
+  margin-top: 14px;
+  max-width: 46ch;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--tx-2);
+}
+.btn--big {
+  font-size: 17px;
+  padding: 17px 34px;
+}
+.lineqr {
+  display: none;
+  align-items: center;
+  gap: 14px;
+  max-width: 300px;
+}
+.lineqr img {
+  width: 104px;
+  height: 104px;
+  padding: 6px;
+  border-radius: 12px;
+  background: #fff;
+  flex: none;
+}
+.lineqr b {
+  font-size: 14.5px;
+}
+.lineqr p {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--tx-2);
+}
+/* Desktop visitors (wide screen with a mouse) get the QR; phones just tap. */
+@media (min-width: 900px) and (hover: hover) and (pointer: fine) {
+  .lineqr {
+    display: flex;
+  }
+}
+
+.start__steps {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.start__steps li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+}
+.start__steps b {
+  color: var(--tx);
+  font-size: 15.5px;
+}
+.start__steps p {
+  margin: 3px 0 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--tx-2);
+}
+.start__n {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #06c755;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+}
+.start__main .start__soon {
+  margin-top: 14px;
+}
+.start__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 22px;
+}
+@media (min-width: 960px) {
+  .start {
+    grid-template-columns: 1.4fr 1fr;
+    align-items: center;
+  }
+}
+
+/* Sticky LINE button on phones, so it's always one tap away. */
+.linebar {
+  display: none;
+}
+@media (max-width: 719px) {
+  .linebar:not(:empty) {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: var(--bg);
+    border-top: 1px solid var(--line);
+  }
+  .linebar .btn {
+    width: 100%;
+  }
+  body {
+    padding-bottom: 76px;
+  }
+  .herocta .btn {
+    width: 100%;
+  }
+}

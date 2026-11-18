@@ -368,16 +368,29 @@
       "<p>" + esc(t().payContact) + "</p>" + communityLink("", "community_pay");
   }
 
+  // Desktop-only QR code for the LINE add-friend link (hidden on phones by CSS).
+  function lineQr() {
+    if (!CONFIG.COMMUNITY_URL || !CONFIG.LINE_QR) return "";
+    return '<div class="lineqr"><img src="' + CONFIG.LINE_QR + '" width="132" height="132" alt="LINE QR" />' +
+      "<div><b>" + esc(t().qrTitle) + "</b><p>" + esc(t().qrBody) + "</p></div></div>";
+  }
+
+  function renderHeroCta() {
+    document.getElementById("hero-cta").innerHTML =
+      '<div class="herocta">' + communityLink("btn--big", "community_hero") + lineQr() + "</div>" +
+      '<p class="herocta__note">' + esc(t().heroCtaNote) + "</p>";
+    document.getElementById("linebar").innerHTML = CONFIG.COMMUNITY_URL ? communityLink("", "community_bar") : "";
+  }
+
   function renderStart() {
+    var steps = t().startSteps.map(function (st, i) {
+      return '<li><span class="start__n">' + (i + 1) + "</span><div><b>" + esc(st.t) + "</b><p>" + esc(st.d) + "</p></div></li>";
+    }).join("");
     document.getElementById("start-box").innerHTML =
-      '<div class="start__main"><h2>' + esc(t().startTitle) + "</h2><p>" + esc(t().startBody) + "</p>" + codeBox() +
-      '<p class="start__org">' + esc(CONFIG.ORG_CODE ? t().startOrg : t().startOrgSoon) + "</p></div>" +
-      '<ul class="start__who">' +
-      "<li><b>" + esc(t().startNewQ) + "</b> " + esc(t().startNewA) + "</li>" +
-      "<li><b>" + esc(t().startOldQ) + "</b> " + esc(t().startOldA) + "</li>" +
-      "</ul>" +
-      '<p class="start__soon">' + esc(t().startCommercial) + "</p>" +
-      '<div class="start__cta">' + communityLink("", "community_start") + "</div>";
+      '<div class="start__main"><h2>' + esc(t().startTitle) + "</h2><p>" + esc(t().startBody) + "</p>" +
+      '<ol class="start__steps">' + steps + "</ol>" +
+      '<p class="start__soon">' + esc(t().startCommercial) + "</p></div>" +
+      '<div class="start__cta">' + communityLink("btn--big", "community_start") + lineQr() + "</div>";
   }
 
   function renderFaq() {
@@ -489,6 +502,7 @@
     renderSetup();
     renderDoDont();
     renderAppSteps();
+    renderHeroCta();
     renderStart();
     renderQuiz();
     renderPay();
